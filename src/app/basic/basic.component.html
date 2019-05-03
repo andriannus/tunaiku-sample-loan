@@ -1,0 +1,178 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <div class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Pinjaman</p>
+
+            <p class="has-text-info title">
+              {{ pinjaman.jumlah }} jt
+            </p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Lama Cicilan</p>
+
+            <p class="has-text-info title">
+              {{ pinjaman.periode }} bulan
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Cicilan per bulan</p>
+
+            <p class="has-text-info title">
+              Rp. {{ pinjaman.cicilan }},-
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <form
+        [formGroup]="basicFormValidations"
+        (ngSubmit)="saveProfile()"
+      >
+        <div class="field">
+          <a
+            class="button is-info is-outlined is-small"
+            routerLink="/"
+          >
+            <span class="icon">
+              <i class="fas fa-chevron-left"></i>
+            </span>
+
+            <span>Kembali</span>
+          </a>
+        </div>
+
+        <div class="field">
+          <label class="label">Nama Lengkap</label>
+
+          <div class="control">
+            <input
+              [(ngModel)]="profile.name"
+              [ngClass]="{
+                'is-danger': nameErrors.length > 0 && !!name.touched === true,
+                '': nameErrors.length === 0 && !!name.touched === true
+              }"
+              formControlName="name"
+              class="input"
+              name="username"
+              type="text"
+              (blur)="nameErrors"
+            >
+
+            <p
+              *ngIf="!!name.touched === true"
+              class="help is-danger"
+            >
+              {{ nameErrors[0] }}
+            </p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">E-mail</label>
+
+          <div class="control">
+            <input
+              [(ngModel)]="profile.email"
+              [ngClass]="{
+                'is-danger': emailErrors.length > 0 && !!email.touched === true,
+                '': emailErrors.length === 0 && !!email.touched === true
+              }"
+              formControlName="email"
+              class="input"
+              name="email"
+              type="email"
+              (blur)="emailErrors"
+            >
+
+            <p
+              *ngIf="!!email.touched === true"
+              class="help is-danger"
+            >
+              {{ emailErrors[0] }}
+            </p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Jenis kelamin</label>
+
+          <div class="control">
+            <label class="radio">
+              <input
+                [(ngModel)]="profile.gender"
+                formControlName="gender"
+                type="radio"
+                name="gender"
+                value="male"
+              >
+              Laki-laki
+            </label>
+
+            <label class="radio">
+              <input
+                [(ngModel)]="profile.gender"
+                formControlName="gender"
+                type="radio"
+                name="gender"
+                value="female"
+              >
+              Perempuan
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Tanggal lahir</label>
+
+          <div class="control">
+            <input
+              [(ngModel)]="profile.dob"
+              [ngClass]="{
+                'is-danger': dobErrors.length > 0 && !!dob.touched === true,
+                '': dobErrors.length === 0 && !!dob.touched === true
+              }"
+              formControlName="dob"
+              class="input"
+              type="date"
+              name="username"
+              (blur)="dobErrors"
+            >
+
+            <p
+              *ngIf="!!dob.touched === true"
+              class="help is-danger"
+            >
+              {{ dobErrors[0] }}
+            </p>
+          </div>
+        </div>
+
+        <div class="field">
+          <button
+            [disabled]="!!basicFormValidations.valid === false"
+            class="button is-success is-rounded is-fullwidth"
+            type="submit"
+          >
+            <span>Lanjutkan</span>
+
+            <span class="icon">
+              <i class="fas fa-arrow-right"></i>
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

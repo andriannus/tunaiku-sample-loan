@@ -1,0 +1,88 @@
+<div class="columns">
+  <div class="column is-6 is-offset-3">
+    <div class="box">
+      <div class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Pinjaman</p>
+
+            <p class="has-text-info title">
+              {{ pinjaman.jumlah }} jt
+            </p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Lama Cicilan</p>
+
+            <p class="has-text-info title">
+              {{ pinjaman.periode }} bulan
+            </p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Cicilan per bulan</p>
+
+            <p class="has-text-info title">
+              Rp. {{ pinjaman.cicilan }},-
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="field">
+        <label class="label">
+          Nama
+        </label>
+
+        <span>{{ profile.name }}</span>
+      </div>
+
+      <div class="field">
+        <label class="label">
+          E-mail
+        </label>
+
+        <span>{{ profile.email }}</span>
+      </div>
+
+      <div class="field">
+        <label class="label">
+          Jenis kelamin
+        </label>
+
+        <span>
+            {{ profile.gender === 'male' ? 'Laki-laki' : 'Perempuan' }}
+        </span>
+      </div>
+
+      <div class="field">
+        <label class="label">
+          Tanggal lahir
+        </label>
+
+        <span>
+            {{ formattedDate }}
+        </span>
+      </div>
+
+      <hr>
+
+      <div class="field has-text-centered">
+        <button
+          class="button is-success"
+          (click)="reset()"
+        >
+          <span>Reset</span>
+
+          <span class="icon">
+            <i class="fas fa-sync"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

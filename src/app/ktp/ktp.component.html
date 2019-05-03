@@ -1,0 +1,69 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <form
+        [formGroup]="ktpFormValidations"
+        (ngSubmit)="submitPinjaman()"
+      >
+        <div
+          *ngIf="isError"
+          class="notification is-danger"
+        >
+          <button
+            class="delete"
+            (click)="isError = false"
+          ></button>
+          
+          Format KTP tidak sesuai dengan tanggal lahir Anda.
+        </div>
+
+        <div class="field">
+          <a
+            class="button is-info is-outlined is-small"
+            routerLink="/step/1"
+          >
+            <span class="icon">
+              <i class="fas fa-chevron-left"></i>
+            </span>
+
+            <span>Kembali</span>
+          </a>
+        </div>
+
+        <div class="field">
+          <label class="label">KTP</label>
+
+          <div class="control">
+            <input
+              [(ngModel)]="profile.ktp"
+              [ngClass]="{
+                'is-danger': ktpErrors.length > 0 && !!ktp.touched === true,
+                '': ktpErrors.length === 0 && !!ktp.touched === true
+              }"
+              formControlName="ktp"
+              class="input"
+              type="text"
+              name="ktp"
+            >
+
+            <p
+              *ngIf="!!ktp.touched === true"
+              class="help is-danger"
+            >
+              {{ ktpErrors[0] }}
+            </p>
+          </div>
+        </div>
+
+        <div class="field">
+          <button
+            [disabled]="!!ktpFormValidations.valid === false"
+            class="button is-success is-rounded is-fullwidth"
+          >
+            Kirim
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

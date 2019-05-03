@@ -1,0 +1,142 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <div class="field">
+        <div class="level mb-0">
+          <div class="level-left">
+            <div class="level-item">
+              <span class="has-text-info">
+                Cicilan
+              </span>
+            </div>
+          </div>
+
+          <div class="level-right">
+            <div class="level-item">
+              <label
+                class="is-size-5 has-text-info"
+              >
+                Rp. {{ cicilan }},-
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="has-text-right">
+          <span class="has-text-info">
+            per bulan
+          </span>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="field">
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <label class="label">Jumlah Pinjaman</label>
+            </div>
+          </div>
+
+          <div class="level-right">
+            <div class="level-item">
+              <label class="label">Rp. {{ pinjaman.jumlah }} juta</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="level mb-0">
+          <div class="level-left">
+            <div class="level-item">
+              <label
+                class="label has-text-weight-light"
+              >
+                2
+              </label>
+            </div>
+          </div>
+
+          <div class="level-right">
+            <div class="level-item">
+              <label
+                class="label has-text-weight-light"
+              >
+                20
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="control">
+          <mat-slider
+            [(ngModel)]="pinjaman.jumlah"
+            thumbLabel
+            min="2"
+            max="20"
+            step="1"
+          ></mat-slider>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="field">
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <label class="label">Periode Pinjaman</label>
+            </div>
+          </div>
+
+          <div class="level-right">
+            <div class="level-item">
+              <label class="label">{{ pinjaman.periode }} bulan</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="level mb-0">
+          <div class="level-left">
+            <div class="level-item">
+              <label
+                class="label has-text-weight-light"
+              >
+                6
+              </label>
+            </div>
+          </div>
+
+          <div class="level-right">
+            <div class="level-item">
+              <label
+                class="label has-text-weight-light"
+              >
+                20
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="control">
+          <mat-slider
+            [(ngModel)]="pinjaman.periode"
+            thumbLabel
+            min="6"
+            max="20"
+            step="1"
+          ></mat-slider>
+        </div>
+      </div>
+
+      <div class="field">
+        <button
+          class="button is-success is-rounded is-fullwidth"
+          (click)="savePinjaman()"
+        >
+          Ajukan Pinjaman
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
