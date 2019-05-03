@@ -60,7 +60,7 @@
             <input
               [(ngModel)]="profile.name"
               [ngClass]="{
-                'is-danger': nameErrors.length > 0 && !!name.touched === true,
+                'is-danger': name.invalid && (name.dirty || name.touched),
                 '': nameErrors.length === 0 && !!name.touched === true
               }"
               formControlName="name"
@@ -71,7 +71,7 @@
             >
 
             <p
-              *ngIf="!!name.touched === true"
+              *ngIf="name.invalid && (name.dirty || name.touched)"
               class="help is-danger"
             >
               {{ nameErrors[0] }}
@@ -86,7 +86,7 @@
             <input
               [(ngModel)]="profile.email"
               [ngClass]="{
-                'is-danger': emailErrors.length > 0 && !!email.touched === true,
+                'is-danger': email.invalid && (email.dirty || email.touched),
                 '': emailErrors.length === 0 && !!email.touched === true
               }"
               formControlName="email"
@@ -97,7 +97,7 @@
             >
 
             <p
-              *ngIf="!!email.touched === true"
+              *ngIf="!!email.invalid && (email.dirty || email.touched)"
               class="help is-danger"
             >
               {{ emailErrors[0] }}
@@ -140,7 +140,7 @@
             <input
               [(ngModel)]="profile.dob"
               [ngClass]="{
-                'is-danger': dobErrors.length > 0 && !!dob.touched === true,
+                'is-danger': dob.invalid && (dob.dirty || dob.touched),
                 '': dobErrors.length === 0 && !!dob.touched === true
               }"
               formControlName="dob"
@@ -151,7 +151,7 @@
             >
 
             <p
-              *ngIf="!!dob.touched === true"
+              *ngIf="dob.invalid && (dob.dirty || dob.touched)"
               class="help is-danger"
             >
               {{ dobErrors[0] }}

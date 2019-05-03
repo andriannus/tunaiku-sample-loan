@@ -37,7 +37,7 @@
             <input
               [(ngModel)]="profile.ktp"
               [ngClass]="{
-                'is-danger': ktpErrors.length > 0 && !!ktp.touched === true,
+                'is-danger': ktp.invalid && (ktp.dirty || ktp.touched),
                 '': ktpErrors.length === 0 && !!ktp.touched === true
               }"
               formControlName="ktp"
@@ -47,7 +47,7 @@
             >
 
             <p
-              *ngIf="!!ktp.touched === true"
+              *ngIf="ktp.invalid && (ktp.dirty || ktp.touched)"
               class="help is-danger"
             >
               {{ ktpErrors[0] }}
