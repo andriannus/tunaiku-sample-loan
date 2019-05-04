@@ -11,6 +11,7 @@ import { FormComponent } from './form/form.component';
 import { KtpComponent } from './ktp/ktp.component';
 import { ResultComponent } from './result/result.component';
 import { MobxAngularModule } from 'mobx-angular';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MobxAngularModule } from 'mobx-angular';
     BasicComponent,
     FormComponent,
     KtpComponent,
+    NotFoundComponent,
     ResultComponent
   ],
   imports: [

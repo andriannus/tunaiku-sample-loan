@@ -1,31 +1,37 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { FormComponent } from './form/form.component';
+import { RouterModule, Routes } from '@angular/router';
 import { BasicComponent } from './basic/basic.component';
+import { FormComponent } from './form/form.component';
 import { KtpComponent } from './ktp/ktp.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FormComponent,
+    component: FormComponent
   },
   {
     path: 'step/1',
-    component: BasicComponent,
+    component: BasicComponent
   },
   {
     path: 'step/2',
-    component: KtpComponent,
+    component: KtpComponent
   },
   {
     path: 'result',
-    component: ResultComponent,
+    component: ResultComponent
   },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
