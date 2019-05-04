@@ -14,7 +14,7 @@
           <div class="level-right">
             <div class="level-item">
               <label
-                class="is-size-5 has-text-info"
+                class="has-text-info is-size-5"
               >
                 Rp. {{ cicilan }},-
               </label>
@@ -35,13 +35,17 @@
         <div class="level">
           <div class="level-left">
             <div class="level-item">
-              <label class="label">Jumlah Pinjaman</label>
+              <label class="label">
+                Jumlah Pinjaman
+              </label>
             </div>
           </div>
 
           <div class="level-right">
             <div class="level-item">
-              <label class="label">Rp. {{ pinjaman.jumlah }} juta</label>
+              <label class="label">
+                Rp. {{ pinjaman.jumlah }} juta
+              </label>
             </div>
           </div>
         </div>
@@ -49,9 +53,7 @@
         <div class="level mb-0">
           <div class="level-left">
             <div class="level-item">
-              <label
-                class="label has-text-weight-light"
-              >
+              <label class="has-text-weight-light label">
                 2
               </label>
             </div>
@@ -59,9 +61,7 @@
 
           <div class="level-right">
             <div class="level-item">
-              <label
-                class="label has-text-weight-light"
-              >
+              <label class="has-text-weight-light label">
                 20
               </label>
             </div>
@@ -85,13 +85,17 @@
         <div class="level">
           <div class="level-left">
             <div class="level-item">
-              <label class="label">Periode Pinjaman</label>
+              <label class="label">
+                Periode Pinjaman
+              </label>
             </div>
           </div>
 
           <div class="level-right">
             <div class="level-item">
-              <label class="label">{{ pinjaman.periode }} bulan</label>
+              <label class="label">
+                {{ pinjaman.periode }} bulan
+              </label>
             </div>
           </div>
         </div>
@@ -99,9 +103,7 @@
         <div class="level mb-0">
           <div class="level-left">
             <div class="level-item">
-              <label
-                class="label has-text-weight-light"
-              >
+              <label class="has-text-weight-light label">
                 6
               </label>
             </div>
@@ -109,9 +111,7 @@
 
           <div class="level-right">
             <div class="level-item">
-              <label
-                class="label has-text-weight-light"
-              >
+              <label class="has-text-weight-light label">
                 20
               </label>
             </div>
@@ -131,7 +131,7 @@
 
       <div class="field">
         <button
-          class="button is-success is-rounded is-fullwidth"
+          class="button is-fullwidth is-rounded is-success"
           (click)="savePinjaman()"
         >
           Ajukan Pinjaman
