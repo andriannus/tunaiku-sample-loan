@@ -1,46 +1,46 @@
-<div class="columns">
-  <div class="column is-6 is-offset-3">
-    <div class="box">
-      <div class="level">
-        <div class="has-text-centered level-item">
-          <div>
-            <p class="heading">
-              Pinjaman
-            </p>
+<div class="box">
+  <div class="level">
+    <div class="has-text-centered level-item">
+      <div>
+        <p class="heading">
+          Pinjaman
+        </p>
 
-            <p class="has-text-info title">
-              {{ pinjaman.jumlah }} jt
-            </p>
-          </div>
-        </div>
-
-        <div class="has-text-centered level-item">
-          <div>
-            <p class="heading">
-              Lama Cicilan
-            </p>
-
-            <p class="has-text-info title">
-              {{ pinjaman.periode }} bulan
-            </p>
-          </div>
-        </div>
-
-        <div class="has-text-centered level-item">
-          <div>
-            <p class="heading">
-              Cicilan per bulan
-            </p>
-
-            <p class="has-text-info title">
-              Rp. {{ pinjaman.cicilan }},-
-            </p>
-          </div>
-        </div>
+        <p class="has-text-success title">
+          {{ pinjaman.jumlah }} jt
+        </p>
       </div>
+    </div>
 
-      <hr>
+    <div class="has-text-centered level-item">
+      <div>
+        <p class="heading">
+          Lama Cicilan
+        </p>
 
+        <p class="has-text-success title">
+          {{ pinjaman.periode }} bulan
+        </p>
+      </div>
+    </div>
+
+    <div class="has-text-centered level-item">
+      <div>
+        <p class="heading">
+          Cicilan per bulan
+        </p>
+
+        <p class="has-text-success title">
+          Rp. {{ pinjaman.cicilan }},-
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="columns">
+    <div class="column is-6 is-offset-3">
       <div class="field">
         <label class="label">
           Nama
@@ -76,21 +76,21 @@
           {{ formattedDate }}
         </span>
       </div>
-
-      <hr>
-
-      <div class="field has-text-centered">
-        <button
-          class="button is-success"
-          (click)="reset()"
-        >
-          <span>Reset</span>
-
-          <span class="icon">
-            <i class="fas fa-sync"></i>
-          </span>
-        </button>
-      </div>
     </div>
+  </div>
+
+  <hr>
+
+  <div class="field has-text-centered">
+    <button
+      class="button is-success"
+      (click)="reset()"
+    >
+      <span>Reset</span>
+
+      <span class="icon">
+        <i class="fas fa-sync"></i>
+      </span>
+    </button>
   </div>
 </div>

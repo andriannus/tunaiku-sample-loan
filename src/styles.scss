@@ -1,6 +1,26 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~bulma/css/bulma.min.css";
 
+$color-success: #23d160;
+
 .mb-0 {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.mat-slider {
+  &-thumb {
+    background-color: $color-success !important;
+
+    &-label {
+      background-color: $color-success !important;
+    }
+  }
+
+  &-track-fill {
+    background-color: $color-success !important;
+  }
 }

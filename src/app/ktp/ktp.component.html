@@ -1,64 +1,68 @@
-<form
-  [formGroup]="ktpFormValidations"
-  (ngSubmit)="submitPinjaman()"
->
-  <div
-    *ngIf="isError"
-    class="notification is-danger"
-  >
-    <button
-      class="delete"
-      (click)="isError = false"
-    ></button>
-    
-    Format KTP tidak sesuai dengan tanggal lahir Anda.
-  </div>
-
-  <div class="field">
-    <a
-      class="button is-info is-outlined is-small"
-      routerLink="/step/1"
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <form
+      [formGroup]="ktpFormValidations"
+      (ngSubmit)="submitPinjaman()"
     >
-      <span class="icon">
-        <i class="fas fa-chevron-left"></i>
-      </span>
-
-      <span>Kembali</span>
-    </a>
-  </div>
-
-  <div class="field">
-    <label class="label">KTP</label>
-
-    <div class="control">
-      <input
-        [(ngModel)]="profile.ktp"
-        [ngClass]="{
-          'is-danger': ktp.invalid && (ktp.dirty || ktp.touched),
-          '': ktpErrors.length === 0 && !!ktp.touched === true
-        }"
-        formControlName="ktp"
-        class="input"
-        type="text"
-        name="ktp"
+      <div
+        *ngIf="isError"
+        class="notification is-danger"
       >
+        <button
+          class="delete"
+          (click)="isError = false"
+        ></button>
+        
+        Format KTP tidak sesuai dengan tanggal lahir Anda.
+      </div>
 
-      <p
-        *ngIf="ktp.invalid && (ktp.dirty || ktp.touched)"
-        class="help is-danger"
-      >
-        {{ ktpErrors[0] }}
-      </p>
-    </div>
-  </div>
+      <div class="field">
+        <a
+          class="button is-info is-outlined is-small"
+          routerLink="/step/1"
+        >
+          <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+          </span>
 
-  <div class="field">
-    <button
-      [disabled]="!!ktpFormValidations.valid === false || isLoading"
-      [ngClass]="{ 'is-loading': isLoading }"
-      class="button is-fullwidth is-rounded is-success"
-    >
-      Kirim
-    </button>
+          <span>Kembali</span>
+        </a>
+      </div>
+
+      <div class="field">
+        <label class="label">KTP</label>
+
+        <div class="control">
+          <input
+            [(ngModel)]="profile.ktp"
+            [ngClass]="{
+              'is-danger': ktp.invalid && (ktp.dirty || ktp.touched),
+              '': ktpErrors.length === 0 && !!ktp.touched === true
+            }"
+            formControlName="ktp"
+            class="input"
+            type="text"
+            name="ktp"
+          >
+
+          <p
+            *ngIf="ktp.invalid && (ktp.dirty || ktp.touched)"
+            class="help is-danger"
+          >
+            {{ ktpErrors[0] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <button
+          [disabled]="!!ktpFormValidations.valid === false || isLoading"
+          [ngClass]="{ 'is-loading': isLoading }"
+          class="button is-fullwidth is-rounded is-success"
+        >
+          Kirim
+        </button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
