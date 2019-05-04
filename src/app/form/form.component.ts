@@ -1,7 +1,7 @@
+import { IPinjaman } from 'src/interfaces/index';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
-import { IPinjaman } from 'src/interfaces/index';
 
 @Component({
   selector: 'app-form',
@@ -12,6 +12,11 @@ import { IPinjaman } from 'src/interfaces/index';
 export class FormComponent implements OnInit {
   private pinjaman = {} as IPinjaman;
 
+  /**
+   * Computed untuk mendapatkan perhitungan cicilan
+   *
+   * @return `resultFixed`
+   */
   private get cicilan(): string {
     const periode: number = this.pinjaman.periode;
     const jumlahPinjaman: number = this.pinjaman.jumlah * 1000000;
@@ -21,12 +26,26 @@ export class FormComponent implements OnInit {
     return resultFixed.toLocaleString(['ban', 'id']);
   }
 
-  public constructor(public appService: AppService, private router: Router) { }
+  public constructor(
+    public appService: AppService,
+    private router: Router
+  ) { }
 
+  /**
+   * Lifecycle Angular
+   *
+   * @listens `getPinjaman()`
+   */
   public ngOnInit(): void {
     this.getPinjaman();
   }
 
+  /**
+   * Method untuk mendapatkan data pinjaman
+   *
+   * @listens `appService.getPinjaman()`
+   * @todo    Mendapatkan data pinjaman dari Service.
+   */
   private getPinjaman(): void {
     this
       .appService
@@ -34,6 +53,13 @@ export class FormComponent implements OnInit {
       .subscribe((pinjaman) => this.pinjaman = pinjaman);
   }
 
+  /**
+   * Method untuk menyimpan data pinjaman
+   *
+   * @listens `appService.savePinjaman()`
+   * @todo    Validasi form.
+   * @todo    Simpan data pinjaman ke Service.
+   */
   private savePinjaman(): void {
     const cicilan: string = this.cicilan;
     const jumlah: number = this.pinjaman.jumlah;

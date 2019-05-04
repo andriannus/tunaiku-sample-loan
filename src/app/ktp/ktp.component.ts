@@ -1,8 +1,8 @@
+import { IDob, IProfile } from 'src/interfaces/index';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
-import { IDob } from '../../interfaces/index';
 
 @Component({
   selector: 'app-ktp',
@@ -11,9 +11,9 @@ import { IDob } from '../../interfaces/index';
 })
 
 export class KtpComponent implements OnInit {
-  private profile = {} as any;
   private dob = {} as IDob;
   private isError = false;
+  private profile = {} as IProfile;
 
   public constructor(
     private appService: AppService,
@@ -21,6 +21,9 @@ export class KtpComponent implements OnInit {
     private router: Router,
   ) { }
 
+  /**
+   * Daftar rules untuk validasi
+   */
   private ktpFormValidations = this.fb.group({
     ktp: [
       '',
@@ -35,6 +38,11 @@ export class KtpComponent implements OnInit {
 
   private ktp: AbstractControl = this.ktpFormValidations.get('ktp');
 
+  /**
+   * Computed untuk validasi KTP
+   *
+   * @return `errors`
+   */
   private get ktpErrors(): string[] {
     const ktp: AbstractControl = this.ktp;
     const errors: string[] = [];
@@ -62,10 +70,21 @@ export class KtpComponent implements OnInit {
     return errors;
   }
 
+  /**
+   * Lifecycle Angular
+   *
+   * @listens `getProfile()`
+   */
   public ngOnInit(): void {
     this.getProfile();
   }
 
+  /**
+   * Method untuk mendapatkan data profile
+   *
+   * @listens `appService.getProfile()`
+   * @todo    Mendapatkan data profile dari Service.
+   */
   private getProfile(): void {
     this
       .appService
@@ -75,6 +94,14 @@ export class KtpComponent implements OnInit {
     this.getDob();
   }
 
+  /**
+   * Method untuk mendapatkan detail tanggal lahir
+   *
+   * @todo Mendapatkan data DOB dari model.
+   * @todo Split data DOB.
+   * @todo Apabila perempuan, +40 untuk data tanggal.
+   * @todo Simpan data tanggal, bulan, dan tahun sesuai DOB.
+   */
   private getDob(): void {
     const dob = this.profile.dob;
     const tempDob = dob.split('-');
@@ -93,6 +120,16 @@ export class KtpComponent implements OnInit {
     this.dob.year = tempDob[0].substr(2, 2);
   }
 
+  /**
+   * Method untuk validasi format KTP
+   *
+   * @todo Substring data KTP sesuai posisi yang ditentukan.
+   * @todo Cek kesesuaian data KTP dengan tanggal lahir.
+   * @todo Cek kesesuaian data KTP dengan bulan lahir.
+   * @todo Cek kesesuaian data KTP dengan tahun lahir.
+   * @todo Apabila sesuai kondisi, berikan nilai `true`.
+   * @todo Jika tidak, berikan nilai `false`.
+   */
   private checkKtp(): boolean {
     const { ktp } = this.profile;
     const newKtp = ktp.substr(6, 6);
@@ -127,6 +164,15 @@ export class KtpComponent implements OnInit {
     }
   }
 
+  /**
+   * Method untuk submit form
+   *
+   * @async
+   * @listens `checkKtp()`
+   * @todo    Cek format KTP
+   * @todo    Jika berhasil, submit form dan arahkan ke halaman result.
+   * @todo    Jika gagal, tampilkan pesan error.
+   */
   private async submitPinjaman(): Promise<void> {
     const check = await this.checkKtp();
 

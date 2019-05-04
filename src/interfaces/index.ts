@@ -14,5 +14,6 @@ export interface IProfile {
   dob: string;
   email: string;
   gender: string;
+  ktp?: string;
   name: string;
 }

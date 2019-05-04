@@ -1,7 +1,7 @@
+import { IPinjaman } from 'src/interfaces/index';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IPinjaman, IProfile } from 'src/interfaces/index';
 import { AppService } from '../app.service';
 
 @Component({
@@ -11,22 +11,17 @@ import { AppService } from '../app.service';
 })
 
 export class BasicComponent implements OnInit {
-  private profile = {} as IProfile;
   private pinjaman = {} as IPinjaman;
 
   public constructor(
     private appService: AppService,
     private fb: FormBuilder,
     private router: Router,
-  ) {
-    this.profile = {
-      dob: '',
-      email: '',
-      gender: '',
-      name: '',
-    };
-  }
+  ) { }
 
+  /**
+   * Daftar rules untuk validasi
+   */
   private basicFormValidations = this.fb.group({
     name: [
       '',
@@ -58,6 +53,11 @@ export class BasicComponent implements OnInit {
   private gender: AbstractControl = this.basicFormValidations.get('gender');
   private dob: AbstractControl = this.basicFormValidations.get('dob');
 
+  /**
+   * Computed untuk validasi nama
+   *
+   * @return `errors`
+   */
   private get nameErrors(): string[] {
     const name: AbstractControl = this.name;
     const errors: string[] = [];
@@ -77,6 +77,11 @@ export class BasicComponent implements OnInit {
     return errors;
   }
 
+  /**
+   * Computed untuk validasi e-mail
+   *
+   * @return `errors`
+   */
   private get emailErrors(): string[] {
     const email: AbstractControl = this.email;
     const errors: string[] = [];
@@ -96,6 +101,11 @@ export class BasicComponent implements OnInit {
     return errors;
   }
 
+  /**
+   * Computed untuk validasi gender
+   *
+   * @return `errors`
+   */
   private get genderErrors(): string[] {
     const gender: AbstractControl = this.gender;
     const errors: string[] = [];
@@ -111,6 +121,11 @@ export class BasicComponent implements OnInit {
     return errors;
   }
 
+  /**
+   * Computed untuk validasi tanggal lahir
+   *
+   * @return `errors`
+   */
   private get dobErrors(): string[] {
     const dob: AbstractControl = this.dob;
     const errors: string[] = [];
@@ -126,11 +141,23 @@ export class BasicComponent implements OnInit {
     return errors;
   }
 
+  /**
+   * Lifecycle Angular
+   *
+   * @listens `getPinjaman()`
+   * @listens `getProfile()`
+   */
   public ngOnInit(): void {
     this.getPinjaman();
     this.getProfile();
   }
 
+  /**
+   * Method untuk mendapatkan data pinjaman
+   *
+   * @listens `appService.getPinjaman()`
+   * @todo    Mendapatkan data pinjaman dari Service.
+   */
   private getPinjaman(): void {
     this
       .appService
@@ -138,14 +165,18 @@ export class BasicComponent implements OnInit {
       .subscribe((pinjaman) => this.pinjaman = pinjaman);
   }
 
+  /**
+   * Method untuk mendapatkan data profile
+   *
+   * @listens `appService.getProfile()`
+   * @todo    Mendapatkan data profile dari Service.
+   */
   private getProfile(): void {
     this
       .appService
       .getProfile()
       .subscribe(
         (profile) => {
-          this.profile = profile;
-
           this.controls.dob.setValue(profile.dob);
           this.controls.email.setValue(profile.email);
           this.controls.gender.setValue(profile.gender);
@@ -154,6 +185,13 @@ export class BasicComponent implements OnInit {
       );
   }
 
+  /**
+   * Method untuk menyimpan data profile
+   *
+   * @listens `appService.saveProfile()`
+   * @todo    Validasi form.
+   * @todo    Simpan data profile ke Service.
+   */
   private saveProfile(): void {
     if (this.basicFormValidations.valid === true) {
       const data = {

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { IPinjaman } from 'src/interfaces';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 
 @Component({
@@ -13,23 +12,42 @@ export class ResultComponent implements OnInit {
   private pinjaman = {} as IPinjaman;
   private profile = {} as any;
 
-  public constructor(private appService: AppService, private router: Router) { }
+  public constructor(
+    private appService: AppService
+  ) { }
 
+  /**
+   * Computed untuk mendapatkan format tanggal Indonesia
+   *
+   * @returns `formattedDate`
+   */
   private get formattedDate(): string {
-    const currentDate = new Date(this.profile.dob);
-    const date = currentDate.getDate();
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
+    const currentDate: Date = new Date(this.profile.dob);
+    const date: number = currentDate.getDate();
+    const month: number = currentDate.getMonth() + 1;
+    const year: number = currentDate.getFullYear();
     const formattedDate = `${date}-${month}-${year}`;
 
     return formattedDate;
   }
 
+  /**
+   * Lifecycle Angular
+   *
+   * @listens `getPinjaman()`
+   * @listens `getProfile()`
+   */
   public ngOnInit(): void {
-    this.getProfile();
     this.getPinjaman();
+    this.getProfile();
   }
 
+  /**
+   * Method untuk mendapatkan data profile
+   *
+   * @listens `appService.getProfile()`
+   * @todo    Mendapatkan data profile dari Service.
+   */
   private getProfile(): void {
     this
       .appService
@@ -37,6 +55,12 @@ export class ResultComponent implements OnInit {
       .subscribe((profile) => this.profile = profile);
   }
 
+  /**
+   * Method untuk mendapatkan data pinjaman
+   *
+   * @listens `appService.getPinjaman()`
+   * @todo    Mendapatkan data pinjaman dari Service.
+   */
   private getPinjaman(): void {
     this
       .appService
@@ -44,6 +68,9 @@ export class ResultComponent implements OnInit {
       .subscribe((pinjaman) => this.pinjaman = pinjaman);
   }
 
+  /**
+   * Method untuk kembali ke halaman awal
+   */
   private reset(): void {
     window.location.href = '/';
   }
