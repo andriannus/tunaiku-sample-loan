@@ -18,7 +18,14 @@ export class BasicComponent implements OnInit {
     private appService: AppService,
     private fb: FormBuilder,
     private router: Router,
-  ) { }
+  ) {
+    this.profile = {
+      dob: '',
+      email: '',
+      gender: '',
+      name: '',
+    };
+  }
 
   private basicFormValidations = this.fb.group({
     name: [
@@ -45,6 +52,7 @@ export class BasicComponent implements OnInit {
     ],
   });
 
+  private controls: {[key: string]: AbstractControl} = this.basicFormValidations.controls;
   private name: AbstractControl = this.basicFormValidations.get('name');
   private email: AbstractControl = this.basicFormValidations.get('email');
   private gender: AbstractControl = this.basicFormValidations.get('gender');
@@ -134,12 +142,26 @@ export class BasicComponent implements OnInit {
     this
       .appService
       .getProfile()
-      .subscribe((profile) => this.profile = profile);
+      .subscribe(
+        (profile) => {
+          this.profile = profile;
+
+          this.controls.dob.setValue(profile.dob);
+          this.controls.email.setValue(profile.email);
+          this.controls.gender.setValue(profile.gender);
+          this.controls.name.setValue(profile.name);
+        }
+      );
   }
 
   private saveProfile(): void {
     if (this.basicFormValidations.valid === true) {
-      const data = this.profile;
+      const data = {
+        dob: this.controls.dob.value,
+        email: this.controls.email.value,
+        gender: this.controls.gender.value,
+        name: this.controls.name.value,
+      };
 
       this.appService.saveProfile(data);
 
