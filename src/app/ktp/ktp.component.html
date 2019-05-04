@@ -54,7 +54,8 @@
 
   <div class="field">
     <button
-      [disabled]="!!ktpFormValidations.valid === false"
+      [disabled]="!!ktpFormValidations.valid === false || isLoading"
+      [ngClass]="{ 'is-loading': isLoading }"
       class="button is-fullwidth is-rounded is-success"
     >
       Kirim

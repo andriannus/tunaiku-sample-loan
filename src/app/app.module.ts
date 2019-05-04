@@ -1,18 +1,18 @@
+import { MobxAngularModule } from 'mobx-angular';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
 import { AppRoutingModule } from './app-routing.module';
+import { AppService } from './app.service';
 import { BasicComponent } from './basic/basic.component';
 import { FormComponent } from './form/form.component';
 import { KtpComponent } from './ktp/ktp.component';
-import { ResultComponent } from './result/result.component';
-import { MobxAngularModule } from 'mobx-angular';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
@@ -38,4 +38,5 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

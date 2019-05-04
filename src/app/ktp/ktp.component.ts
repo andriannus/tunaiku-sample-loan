@@ -13,12 +13,13 @@ import { AppService } from '../app.service';
 export class KtpComponent implements OnInit {
   private dob = {} as IDob;
   private isError = false;
+  private isLoading = false;
   private profile = {} as IProfile;
 
   public constructor(
     private appService: AppService,
     private fb: FormBuilder,
-    private router: Router,
+    private router: Router
   ) { }
 
   /**
@@ -174,6 +175,8 @@ export class KtpComponent implements OnInit {
    * @todo    Jika gagal, tampilkan pesan error.
    */
   private async submitPinjaman(): Promise<void> {
+    this.isLoading = true;
+
     const check = await this.checkKtp();
 
     if (check === false) {
@@ -181,7 +184,11 @@ export class KtpComponent implements OnInit {
     } else {
       this.isError = false;
 
-      this.router.navigateByUrl('/result');
+      setTimeout(() => {
+        this.isLoading = false;
+
+        this.router.navigateByUrl('/result');
+      }, 1000);
     }
   }
 }
