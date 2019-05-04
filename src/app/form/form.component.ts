@@ -1,5 +1,6 @@
 import { IPinjaman } from 'src/interfaces/index';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 
@@ -28,15 +29,19 @@ export class FormComponent implements OnInit {
 
   public constructor(
     public appService: AppService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   /**
    * Lifecycle Angular
    *
+   * @listens `titleService.setTitle()`
    * @listens `getPinjaman()`
    */
   public ngOnInit(): void {
+    this.titleService.setTitle('Ajukan Pinjaman - Tunaiku');
+
     this.getPinjaman();
   }
 

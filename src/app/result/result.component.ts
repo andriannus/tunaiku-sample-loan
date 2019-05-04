@@ -1,5 +1,6 @@
 import { IPinjaman } from 'src/interfaces';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ResultComponent implements OnInit {
   private profile = {} as any;
 
   public constructor(
-    private appService: AppService
+    private appService: AppService,
+    private titleService: Title
   ) { }
 
   /**
@@ -34,10 +36,13 @@ export class ResultComponent implements OnInit {
   /**
    * Lifecycle Angular
    *
+   * @listens `titleService.setTitle()`
    * @listens `getPinjaman()`
    * @listens `getProfile()`
    */
   public ngOnInit(): void {
+    this.titleService.setTitle('Data Pengguna - Tunaiku');
+
     this.getPinjaman();
     this.getProfile();
   }
