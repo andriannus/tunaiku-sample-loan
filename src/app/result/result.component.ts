@@ -1,6 +1,7 @@
-import { IPinjaman } from 'src/interfaces';
+import { IPinjaman, IProfile } from 'src/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 
 @Component({
@@ -11,10 +12,11 @@ import { AppService } from '../app.service';
 
 export class ResultComponent implements OnInit {
   private pinjaman = {} as IPinjaman;
-  private profile = {} as any;
+  private profile = {} as IProfile;
 
   public constructor(
     private appService: AppService,
+    private router: Router,
     private titleService: Title
   ) { }
 
@@ -70,7 +72,15 @@ export class ResultComponent implements OnInit {
     this
       .appService
       .getPinjaman()
-      .subscribe((pinjaman) => this.pinjaman = pinjaman);
+      .subscribe(
+        (pinjaman) => {
+          if (!!pinjaman.cicilan === true) {
+            this.pinjaman = pinjaman;
+          } else {
+            this.router.navigateByUrl('/');
+          }
+        }
+      );
   }
 
   /**

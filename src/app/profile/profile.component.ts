@@ -1,6 +1,7 @@
 import { IPinjaman } from 'src/interfaces/index';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class ProfileComponent implements OnInit {
 
   public constructor(
     private appService: AppService,
+    private router: Router,
     private titleService: Title
   ) { }
 
@@ -39,6 +41,14 @@ export class ProfileComponent implements OnInit {
     this
       .appService
       .getPinjaman()
-      .subscribe((pinjaman) => this.pinjaman = pinjaman);
+      .subscribe(
+        (pinjaman) => {
+          if (!!pinjaman.cicilan === true) {
+            this.pinjaman = pinjaman;
+          } else {
+            this.router.navigateByUrl('/');
+          }
+        }
+      );
   }
 }
