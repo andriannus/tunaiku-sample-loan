@@ -1,188 +1,140 @@
-<div class="columns">
-  <div class="column is-4 is-offset-4">
-    <div class="box">
-      <div class="level">
-        <div class="has-text-centered level-item">
-          <div>
-            <p class="heading">
-              Pinjaman
-            </p>
+<form
+  [formGroup]="basicFormValidations"
+  (ngSubmit)="saveProfile()"
+>
+  <div class="field">
+    <a
+      class="button is-info is-outlined is-small"
+      routerLink="/"
+    >
+      <span class="icon">
+        <i class="fas fa-chevron-left"></i>
+      </span>
 
-            <p class="has-text-info title">
-              {{ pinjaman.jumlah }} jt
-            </p>
-          </div>
-        </div>
+      <span>Kembali</span>
+    </a>
+  </div>
 
-        <div class="has-text-centered level-item">
-          <div>
-            <p class="heading">
-              Lama Cicilan
-            </p>
+  <div class="field">
+    <label class="label">
+      Nama Lengkap
+    </label>
 
-            <p class="has-text-info title">
-              {{ pinjaman.periode }} bulan
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="level">
-        <div class="has-text-centered level-item">
-          <div>
-            <p class="heading">
-              Cicilan per bulan
-            </p>
-
-            <p class="has-text-info title">
-              Rp. {{ pinjaman.cicilan }},-
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <hr>
-
-      <form
-        [formGroup]="basicFormValidations"
-        (ngSubmit)="saveProfile()"
+    <div class="control">
+      <input
+        [ngClass]="{
+          'is-danger': name.invalid && (name.dirty || name.touched),
+          '': nameErrors.length === 0 && !!name.touched === true
+        }"
+        formControlName="name"
+        class="input"
+        name="username"
+        type="text"
+        (blur)="nameErrors"
       >
-        <div class="field">
-          <a
-            class="button is-info is-outlined is-small"
-            routerLink="/"
-          >
-            <span class="icon">
-              <i class="fas fa-chevron-left"></i>
-            </span>
 
-            <span>Kembali</span>
-          </a>
-        </div>
-
-        <div class="field">
-          <label class="label">
-            Nama Lengkap
-          </label>
-
-          <div class="control">
-            <input
-              [ngClass]="{
-                'is-danger': name.invalid && (name.dirty || name.touched),
-                '': nameErrors.length === 0 && !!name.touched === true
-              }"
-              formControlName="name"
-              class="input"
-              name="username"
-              type="text"
-              (blur)="nameErrors"
-            >
-
-            <p
-              *ngIf="name.invalid && (name.dirty || name.touched)"
-              class="help is-danger"
-            >
-              {{ nameErrors[0] }}
-            </p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">
-            E-mail
-          </label>
-
-          <div class="control">
-            <input
-              [ngClass]="{
-                'is-danger': email.invalid && (email.dirty || email.touched),
-                '': emailErrors.length === 0 && !!email.touched === true
-              }"
-              formControlName="email"
-              class="input"
-              name="email"
-              type="email"
-              (blur)="emailErrors"
-            >
-
-            <p
-              *ngIf="!!email.invalid && (email.dirty || email.touched)"
-              class="help is-danger"
-            >
-              {{ emailErrors[0] }}
-            </p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">
-            Jenis kelamin
-          </label>
-
-          <div class="control">
-            <label class="radio">
-              <input
-                formControlName="gender"
-                type="radio"
-                name="gender"
-                value="male"
-              >
-              Laki-laki
-            </label>
-
-            <label class="radio">
-              <input
-                formControlName="gender"
-                type="radio"
-                name="gender"
-                value="female"
-              >
-              Perempuan
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">
-            Tanggal lahir
-          </label>
-
-          <div class="control">
-            <input
-              [ngClass]="{
-                'is-danger': dob.invalid && (dob.dirty || dob.touched),
-                '': dobErrors.length === 0 && !!dob.touched === true
-              }"
-              formControlName="dob"
-              class="input"
-              type="date"
-              name="username"
-              (blur)="dobErrors"
-            >
-
-            <p
-              *ngIf="dob.invalid && (dob.dirty || dob.touched)"
-              class="help is-danger"
-            >
-              {{ dobErrors[0] }}
-            </p>
-          </div>
-        </div>
-
-        <div class="field">
-          <button
-            [disabled]="!!basicFormValidations.valid === false"
-            class="button is-fullwidth is-rounded is-success"
-            type="submit"
-          >
-            <span>Lanjutkan</span>
-
-            <span class="icon">
-              <i class="fas fa-arrow-right"></i>
-            </span>
-          </button>
-        </div>
-      </form>
+      <p
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="help is-danger"
+      >
+        {{ nameErrors[0] }}
+      </p>
     </div>
   </div>
-</div>
+
+  <div class="field">
+    <label class="label">
+      E-mail
+    </label>
+
+    <div class="control">
+      <input
+        [ngClass]="{
+          'is-danger': email.invalid && (email.dirty || email.touched),
+          '': emailErrors.length === 0 && !!email.touched === true
+        }"
+        formControlName="email"
+        class="input"
+        name="email"
+        type="email"
+        (blur)="emailErrors"
+      >
+
+      <p
+        *ngIf="!!email.invalid && (email.dirty || email.touched)"
+        class="help is-danger"
+      >
+        {{ emailErrors[0] }}
+      </p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      Jenis kelamin
+    </label>
+
+    <div class="control">
+      <label class="radio">
+        <input
+          formControlName="gender"
+          type="radio"
+          name="gender"
+          value="male"
+        >
+        Laki-laki
+      </label>
+
+      <label class="radio">
+        <input
+          formControlName="gender"
+          type="radio"
+          name="gender"
+          value="female"
+        >
+        Perempuan
+      </label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      Tanggal lahir
+    </label>
+
+    <div class="control">
+      <input
+        [ngClass]="{
+          'is-danger': dob.invalid && (dob.dirty || dob.touched),
+          '': dobErrors.length === 0 && !!dob.touched === true
+        }"
+        formControlName="dob"
+        class="input"
+        type="date"
+        name="username"
+        (blur)="dobErrors"
+      >
+
+      <p
+        *ngIf="dob.invalid && (dob.dirty || dob.touched)"
+        class="help is-danger"
+      >
+        {{ dobErrors[0] }}
+      </p>
+    </div>
+  </div>
+
+  <div class="field">
+    <button
+      [disabled]="!!basicFormValidations.valid === false"
+      class="button is-fullwidth is-rounded is-success"
+      type="submit"
+    >
+      <span>Lanjutkan</span>
+
+      <span class="icon">
+        <i class="fas fa-arrow-right"></i>
+      </span>
+    </button>
+  </div>
+</form>

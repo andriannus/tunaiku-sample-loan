@@ -1,0 +1,49 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <div class="level">
+        <div class="has-text-centered level-item">
+          <div>
+            <p class="heading">
+              Pinjaman
+            </p>
+
+            <p class="has-text-info title">
+              {{ pinjaman.jumlah }} jt
+            </p>
+          </div>
+        </div>
+
+        <div class="has-text-centered level-item">
+          <div>
+            <p class="heading">
+              Lama Cicilan
+            </p>
+
+            <p class="has-text-info title">
+              {{ pinjaman.periode }} bulan
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="level">
+        <div class="has-text-centered level-item">
+          <div>
+            <p class="heading">
+              Cicilan per bulan
+            </p>
+
+            <p class="has-text-info title">
+              Rp. {{ pinjaman.cicilan }},-
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

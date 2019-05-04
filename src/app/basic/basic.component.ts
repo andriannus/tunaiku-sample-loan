@@ -1,4 +1,3 @@
-import { IPinjaman } from 'src/interfaces/index';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +10,6 @@ import { AppService } from '../app.service';
 })
 
 export class BasicComponent implements OnInit {
-  private pinjaman = {} as IPinjaman;
 
   public constructor(
     private appService: AppService,
@@ -144,25 +142,10 @@ export class BasicComponent implements OnInit {
   /**
    * Lifecycle Angular
    *
-   * @listens `getPinjaman()`
    * @listens `getProfile()`
    */
   public ngOnInit(): void {
-    this.getPinjaman();
     this.getProfile();
-  }
-
-  /**
-   * Method untuk mendapatkan data pinjaman
-   *
-   * @listens `appService.getPinjaman()`
-   * @todo    Mendapatkan data pinjaman dari Service.
-   */
-  private getPinjaman(): void {
-    this
-      .appService
-      .getPinjaman()
-      .subscribe((pinjaman) => this.pinjaman = pinjaman);
   }
 
   /**

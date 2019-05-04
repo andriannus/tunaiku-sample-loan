@@ -12,6 +12,7 @@ import { KtpComponent } from './ktp/ktp.component';
 import { ResultComponent } from './result/result.component';
 import { MobxAngularModule } from 'mobx-angular';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormComponent,
     KtpComponent,
     NotFoundComponent,
+    ProfileComponent,
     ResultComponent
   ],
   imports: [

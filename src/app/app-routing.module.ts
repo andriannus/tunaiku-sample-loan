@@ -4,6 +4,7 @@ import { BasicComponent } from './basic/basic.component';
 import { FormComponent } from './form/form.component';
 import { KtpComponent } from './ktp/ktp.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
@@ -12,12 +13,18 @@ const routes: Routes = [
     component: FormComponent
   },
   {
-    path: 'step/1',
-    component: BasicComponent
-  },
-  {
-    path: 'step/2',
-    component: KtpComponent
+    path: 'step',
+    component: ProfileComponent,
+    children: [
+      {
+        path: '1',
+        component: BasicComponent
+      },
+      {
+        path: '2',
+        component: KtpComponent
+      }
+    ]
   },
   {
     path: 'result',
