@@ -11,14 +11,14 @@ import { AppService } from '../app.service';
 })
 
 export class FormComponent implements OnInit {
-  private pinjaman = {} as IPinjaman;
+  public pinjaman = {} as IPinjaman;
 
   /**
    * Computed untuk mendapatkan perhitungan cicilan
    *
    * @return `resultFixed`
    */
-  private get cicilan(): string {
+  public get cicilan(): string {
     const periode: number = this.pinjaman.periode;
     const jumlahPinjaman: number = this.pinjaman.jumlah * 1000000;
     const result: number = jumlahPinjaman / periode;
@@ -29,8 +29,8 @@ export class FormComponent implements OnInit {
 
   public constructor(
     public appService: AppService,
-    private router: Router,
-    private titleService: Title
+    public router: Router,
+    public titleService: Title
   ) { }
 
   /**
@@ -51,7 +51,7 @@ export class FormComponent implements OnInit {
    * @listens `appService.getPinjaman()`
    * @todo    Mendapatkan data pinjaman dari Service.
    */
-  private getPinjaman(): void {
+  public getPinjaman(): void {
     this
       .appService
       .getPinjaman()
@@ -65,7 +65,7 @@ export class FormComponent implements OnInit {
    * @todo    Validasi form.
    * @todo    Simpan data pinjaman ke Service.
    */
-  private savePinjaman(): void {
+  public savePinjaman(): void {
     const cicilan: string = this.cicilan;
     const jumlah: number = this.pinjaman.jumlah;
     const periode: number = this.pinjaman.periode;

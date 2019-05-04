@@ -11,13 +11,13 @@ import { AppService } from '../app.service';
 })
 
 export class ResultComponent implements OnInit {
-  private pinjaman = {} as IPinjaman;
-  private profile = {} as IProfile;
+  public pinjaman = {} as IPinjaman;
+  public profile = {} as IProfile;
 
   public constructor(
-    private appService: AppService,
-    private router: Router,
-    private titleService: Title
+    public appService: AppService,
+    public router: Router,
+    public titleService: Title
   ) { }
 
   /**
@@ -25,7 +25,7 @@ export class ResultComponent implements OnInit {
    *
    * @returns `formattedDate`
    */
-  private get formattedDate(): string {
+  public get formattedDate(): string {
     const currentDate: Date = new Date(this.profile.dob);
     const date: number = currentDate.getDate();
     const month: number = currentDate.getMonth() + 1;
@@ -55,7 +55,7 @@ export class ResultComponent implements OnInit {
    * @listens `appService.getProfile()`
    * @todo    Mendapatkan data profile dari Service.
    */
-  private getProfile(): void {
+  public getProfile(): void {
     this
       .appService
       .getProfile()
@@ -68,7 +68,7 @@ export class ResultComponent implements OnInit {
    * @listens `appService.getPinjaman()`
    * @todo    Mendapatkan data pinjaman dari Service.
    */
-  private getPinjaman(): void {
+  public getPinjaman(): void {
     this
       .appService
       .getPinjaman()
@@ -86,7 +86,7 @@ export class ResultComponent implements OnInit {
   /**
    * Method untuk kembali ke halaman awal
    */
-  private reset(): void {
+  public reset(): void {
     window.location.href = '/';
   }
 }

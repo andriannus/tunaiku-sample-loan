@@ -12,15 +12,15 @@ import { AppService } from '../app.service';
 export class BasicComponent implements OnInit {
 
   public constructor(
-    private appService: AppService,
-    private fb: FormBuilder,
-    private router: Router,
+    public appService: AppService,
+    public fb: FormBuilder,
+    public router: Router,
   ) { }
 
   /**
    * Daftar rules untuk validasi
    */
-  private basicFormValidations = this.fb.group({
+  public basicFormValidations = this.fb.group({
     name: [
       '',
       [
@@ -45,18 +45,18 @@ export class BasicComponent implements OnInit {
     ],
   });
 
-  private controls: {[key: string]: AbstractControl} = this.basicFormValidations.controls;
-  private name: AbstractControl = this.basicFormValidations.get('name');
-  private email: AbstractControl = this.basicFormValidations.get('email');
-  private gender: AbstractControl = this.basicFormValidations.get('gender');
-  private dob: AbstractControl = this.basicFormValidations.get('dob');
+  public controls: {[key: string]: AbstractControl} = this.basicFormValidations.controls;
+  public name: AbstractControl = this.basicFormValidations.get('name');
+  public email: AbstractControl = this.basicFormValidations.get('email');
+  public gender: AbstractControl = this.basicFormValidations.get('gender');
+  public dob: AbstractControl = this.basicFormValidations.get('dob');
 
   /**
    * Computed untuk validasi nama
    *
    * @return `errors`
    */
-  private get nameErrors(): string[] {
+  public get nameErrors(): string[] {
     const name: AbstractControl = this.name;
     const errors: string[] = [];
 
@@ -80,7 +80,7 @@ export class BasicComponent implements OnInit {
    *
    * @return `errors`
    */
-  private get emailErrors(): string[] {
+  public get emailErrors(): string[] {
     const email: AbstractControl = this.email;
     const errors: string[] = [];
 
@@ -104,7 +104,7 @@ export class BasicComponent implements OnInit {
    *
    * @return `errors`
    */
-  private get genderErrors(): string[] {
+  public get genderErrors(): string[] {
     const gender: AbstractControl = this.gender;
     const errors: string[] = [];
 
@@ -124,7 +124,7 @@ export class BasicComponent implements OnInit {
    *
    * @return `errors`
    */
-  private get dobErrors(): string[] {
+  public get dobErrors(): string[] {
     const dob: AbstractControl = this.dob;
     const errors: string[] = [];
 
@@ -154,7 +154,7 @@ export class BasicComponent implements OnInit {
    * @listens `appService.getProfile()`
    * @todo    Mendapatkan data profile dari Service.
    */
-  private getProfile(): void {
+  public getProfile(): void {
     this
       .appService
       .getProfile()
@@ -175,7 +175,7 @@ export class BasicComponent implements OnInit {
    * @todo    Validasi form.
    * @todo    Simpan data profile ke Service.
    */
-  private saveProfile(): void {
+  public saveProfile(): void {
     if (this.basicFormValidations.valid === true) {
       const data = {
         dob: this.controls.dob.value,

@@ -11,21 +11,21 @@ import { AppService } from '../app.service';
 })
 
 export class KtpComponent implements OnInit {
-  private dob = {} as IDob;
-  private isError = false;
-  private isLoading = false;
-  private profile = {} as IProfile;
+  public dob = {} as IDob;
+  public isError = false;
+  public isLoading = false;
+  public profile = {} as IProfile;
 
   public constructor(
-    private appService: AppService,
-    private fb: FormBuilder,
-    private router: Router
+    public appService: AppService,
+    public fb: FormBuilder,
+    public router: Router
   ) { }
 
   /**
    * Daftar rules untuk validasi
    */
-  private ktpFormValidations = this.fb.group({
+  public ktpFormValidations = this.fb.group({
     ktp: [
       '',
       [
@@ -37,14 +37,14 @@ export class KtpComponent implements OnInit {
     ],
   });
 
-  private ktp: AbstractControl = this.ktpFormValidations.get('ktp');
+  public ktp: AbstractControl = this.ktpFormValidations.get('ktp');
 
   /**
    * Computed untuk validasi KTP
    *
    * @return `errors`
    */
-  private get ktpErrors(): string[] {
+  public get ktpErrors(): string[] {
     const ktp: AbstractControl = this.ktp;
     const errors: string[] = [];
 
@@ -86,7 +86,7 @@ export class KtpComponent implements OnInit {
    * @listens `appService.getProfile()`
    * @todo    Mendapatkan data profile dari Service.
    */
-  private getProfile(): void {
+  public getProfile(): void {
     this
       .appService
       .getProfile()
@@ -103,7 +103,7 @@ export class KtpComponent implements OnInit {
    * @todo Apabila perempuan, +40 untuk data tanggal.
    * @todo Simpan data tanggal, bulan, dan tahun sesuai DOB.
    */
-  private getDob(): void {
+  public getDob(): void {
     const dob = this.profile.dob;
     const tempDob = dob.split('-');
 
@@ -131,7 +131,7 @@ export class KtpComponent implements OnInit {
    * @todo Apabila sesuai kondisi, berikan nilai `true`.
    * @todo Jika tidak, berikan nilai `false`.
    */
-  private checkKtp(): boolean {
+  public checkKtp(): boolean {
     const { ktp } = this.profile;
     const newKtp = ktp.substr(6, 6);
     const date = newKtp.substr(0, 2);
@@ -174,7 +174,7 @@ export class KtpComponent implements OnInit {
    * @todo    Jika berhasil, submit form dan arahkan ke halaman result.
    * @todo    Jika gagal, tampilkan pesan error.
    */
-  private async submitPinjaman(): Promise<void> {
+  public async submitPinjaman(): Promise<void> {
     this.isLoading = true;
 
     const check = await this.checkKtp();

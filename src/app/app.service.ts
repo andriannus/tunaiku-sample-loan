@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 
 export class AppService {
   public profile = {} as IProfile;
-  private pinjaman = {} as IPinjaman;
+  public pinjaman = {} as IPinjaman;
 
   public constructor() {
     this.pinjaman.jumlah = 2;

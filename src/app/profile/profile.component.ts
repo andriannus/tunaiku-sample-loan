@@ -11,12 +11,12 @@ import { AppService } from '../app.service';
 })
 
 export class ProfileComponent implements OnInit {
-  private pinjaman = {} as IPinjaman;
+  public pinjaman = {} as IPinjaman;
 
   public constructor(
-    private appService: AppService,
-    private router: Router,
-    private titleService: Title
+    public appService: AppService,
+    public router: Router,
+    public titleService: Title
   ) { }
 
   /**
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
    * @listens `appService.getPinjaman()`
    * @todo    Mendapatkan data pinjaman dari Service.
    */
-   private getPinjaman(): void {
+   public getPinjaman(): void {
     this
       .appService
       .getPinjaman()
