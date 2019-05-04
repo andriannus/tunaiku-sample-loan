@@ -180,13 +180,14 @@ export class KtpComponent implements OnInit {
     const check = await this.checkKtp();
 
     if (check === false) {
-      this.isError = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.isError = true;
+      }, 500);
     } else {
       this.isError = false;
 
       setTimeout(() => {
-        this.isLoading = false;
-
         this.router.navigateByUrl('/result');
       }, 1000);
     }
